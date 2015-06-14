@@ -1,6 +1,6 @@
 <?php
 
-namespace Codecommerce\Exceptions;
+namespace CodeCommerce\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

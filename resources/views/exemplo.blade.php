@@ -1,5 +1,6 @@
-
-
-
-<h1>{{ $nome }} {{ $sobrenome }} Gostosa <3</h1>
-<p>Lorem Ipsum</p>
+<h1>Exemplo</h1>
+<ul>
+	@foreach($categorias as $categoria)
+		<li>{{ $categoria->nome }}</li>
+	@endforeach
+</ul>

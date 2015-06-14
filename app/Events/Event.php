@@ -1,6 +1,6 @@
 <?php
 
-namespace Codecommerce\Events;
+namespace CodeCommerce\Events;
 
 abstract class Event
 {
