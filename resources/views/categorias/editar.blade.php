@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class='container'>
-		<h1>Cadastrar Categoria</h1>
+		<h1>Editar Categoria: {{ $categoria->nome }}</h1>
 
 		@if ($errors->any())
 			<ul class='alert'>
@@ -12,18 +12,18 @@
 			</ul>
 		@endif
 		
-		{!! Form::open(['route'=>'categorias.adicionar'])  !!}
+		{!! Form::open(['route'=>['categorias.atualizar',$categoria->id], 'method'=>'put'])  !!}
 		<div class='form-group'>
 			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', null, ['class'=>'form-control']) !!}
+			{!! Form::text('nome', $categoria->nome, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('descricao', 'Descrição:') !!}
-			{!! Form::textarea('descricao', null, ['class'=>'form-control']) !!}
+			{!! Form::textarea('descricao', $categoria->descricao, ['class'=>'form-control']) !!}
 		</div>
 
 		<div class='form-group'>
-			{!! Form::submit('Cadastrar Categoria', ['class'=>'btn btn-primary form-control']) !!}
+			{!! Form::submit('Editar Categoria', ['class'=>'btn btn-primary']) !!}
 		</div>
 		{!! Form::close() !!}
 	</div>
