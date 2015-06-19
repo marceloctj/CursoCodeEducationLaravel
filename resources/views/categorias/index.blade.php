@@ -19,7 +19,7 @@
 				<td>{{ $categoria->nome }}</td>
 				<td>{{ $categoria->descricao }}</td>
 				<td>
-					<a href="{{route('categorias.editar',['id'=>$categoria->id])}}">Editar</a>|
+					<a href="{{route('categorias.editar',['id'=>$categoria->id])}}">Editar</a> | 
 					<a href="{{route('categorias.deletar',['id'=>$categoria->id])}}">Deletar</a>
 				</td>
 			</tr>
