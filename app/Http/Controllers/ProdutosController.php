@@ -26,27 +26,37 @@ class ProdutosController extends Controller
 
     public function cadastrar()
     {
-        return 'Create';
+        $action = 'produtos.adicionar';
+        return view('produtos.cadastrar');
     }
     
-    public function adicionar()
+    public function adicionar(Request $request)
     {
-        return 'Store';
+        if($request->isMethod('post')){
+            $this->produtoModel->create($request->all());
+            return redirect()->route('produtos');
+        }
     }
 
-    public function editar($id)
+    public function editar(Request $request, $id)
     {
-        return 'Edit';
+        $produto = $this->produtoModel->find($id);          
+
+        return view('produtos.editar', compact('produto'));
     }
 
-    public function atualizar($id)
+    public function atualizar(Request $request, $id)
     {
-        return 'Update';
+        if($request->isMethod('put')){
+            $this->produtoModel->find($id)->update($request->all());
+            return redirect()->route('produtos');
+        }
     }
 
     public function deletar($id)
     {
-        return 'Destroy';
+        $this->produtoModel->find($id)->delete();
+        return redirect()->route('produtos');
     }
 
 }
