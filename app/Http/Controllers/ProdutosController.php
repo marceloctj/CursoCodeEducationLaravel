@@ -23,4 +23,30 @@ class ProdutosController extends Controller
 
         return view('produtos.index', compact('produtos'));
     }
+
+    public function cadastrar()
+    {
+        return 'Create';
+    }
+    
+    public function adicionar()
+    {
+        return 'Store';
+    }
+
+    public function editar($id)
+    {
+        return 'Edit';
+    }
+
+    public function atualizar($id)
+    {
+        return 'Update';
+    }
+
+    public function deletar($id)
+    {
+        return 'Destroy';
+    }
+
 }

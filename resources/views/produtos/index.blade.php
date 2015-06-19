@@ -4,7 +4,7 @@
 	<div class='container'>
 		<h1>Produtos</h1>
 
-		<!-- <a href="{{ route('categorias.cadastrar') }}" class='btn btn-default'>Cadastrar</a><br><br> -->
+		<a href="{{ route('produtos.cadastrar') }}" class='btn btn-default'>Cadastrar</a><br><br>
 
 		<table class='table'>
 			<tr>
@@ -20,7 +20,10 @@
 					<td>{{ $produto->nome }}</td>
 					<td>{{ $produto->descricao }}</td>
 					<td>R$ {{ $produto->preco }}</td>
-					<td></td>
+					<td>
+						<a href="{{route('produtos.editar',['id'=>$produto->id])}}">Editar</a> | 
+						<a href="{{route('produtos.deletar',['id'=>$produto->id])}}">Deletar</a>
+					</td>
 				</tr>
 			@endforeach
 		</table>		
