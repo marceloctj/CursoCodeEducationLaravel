@@ -14,16 +14,16 @@
 		
 		{!! Form::open(['route'=>'produtos.adicionar'])  !!}
 		<div class='form-group'>
-			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', null, ['class'=>'form-control']) !!}
+			{!! Form::label('name', 'Nome:') !!}
+			{!! Form::text('name', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('descricao', 'Descrição:') !!}
-			{!! Form::textarea('descricao', null, ['class'=>'form-control']) !!}
+			{!! Form::label('description', 'Descrição:') !!}
+			{!! Form::textarea('description', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('preco', 'Preço:') !!}
-			{!! Form::number('preco', null, ['class'=>'form-control']) !!}
+			{!! Form::label('price', 'Preço:') !!}
+			{!! Form::number('price', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('featured', 'Featured') !!} {!! Form::checkbox('featured', 1) !!}<br>

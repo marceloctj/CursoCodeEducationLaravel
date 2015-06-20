@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class='container'>
-		<h1>Cadastrar Produto</h1>
+		<h1>Editar Produto: {{ $categoria->name }}</h1>
 
 		@if ($errors->any())
 			<ul class='alert'>
@@ -14,16 +14,16 @@
 		
 		{!! Form::open(['route'=>['produtos.atualizar',$produto->id], 'method'=>'put']) !!}
 		<div class='form-group'>
-			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', $produto->nome, ['class'=>'form-control']) !!}
+			{!! Form::label('name', 'Nome:') !!}
+			{!! Form::text('name', $produto->name, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('descricao', 'Descrição:') !!}
-			{!! Form::textarea('descricao', $produto->descricao, ['class'=>'form-control']) !!}
+			{!! Form::label('description', 'Descrição:') !!}
+			{!! Form::textarea('description', $produto->description, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('preco', 'Preço:') !!}
-			{!! Form::number('preco', $produto->preco, ['class'=>'form-control']) !!}
+			{!! Form::label('price', 'Preço:') !!}
+			{!! Form::number('price', $produto->price, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('featured', 'Featured') !!} {!! Form::checkbox('featured', 1, $produto->featured) !!}<br>

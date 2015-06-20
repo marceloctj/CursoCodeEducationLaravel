@@ -19,9 +19,9 @@
 			@forelse($produtos as $produto)
 				<tr>
 					<td>{{ $produto->id }}</td>
-					<td>{{ $produto->nome }}</td>
-					<td>{{ $produto->descricao }}</td>
-					<td>R$ {{ $produto->preco }}</td>
+					<td>{{ $produto->name }}</td>
+					<td>{{ $produto->description }}</td>
+					<td>R$ {{ $produto->price }}</td>
 					<td>{{ ($produto->featured)? 'Sim':'Não' }}</td>
 					<td>{{ ($produto->recommend)? 'Sim':'Não' }}</td>
 					<td>

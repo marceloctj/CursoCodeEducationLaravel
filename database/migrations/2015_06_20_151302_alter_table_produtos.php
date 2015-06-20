@@ -13,4 +13,9 @@ class AlterTableProdutos extends Migration
             $table->boolean('recommend');
         });
     }
+
+    public function down()
+    {
+    	
+    }
 }

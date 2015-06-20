@@ -14,12 +14,12 @@
 		
 		{!! Form::open(['route'=>'categorias.adicionar'])  !!}
 		<div class='form-group'>
-			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', null, ['class'=>'form-control']) !!}
+			{!! Form::label('name', 'Nome:') !!}
+			{!! Form::text('name', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('descricao', 'Descrição:') !!}
-			{!! Form::textarea('descricao', null, ['class'=>'form-control']) !!}
+			{!! Form::label('description', 'Descrição:') !!}
+			{!! Form::textarea('description', null, ['class'=>'form-control']) !!}
 		</div>
 
 		<div class='form-group'>

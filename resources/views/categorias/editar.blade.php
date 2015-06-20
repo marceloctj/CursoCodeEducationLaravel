@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class='container'>
-		<h1>Editar Categoria: {{ $categoria->nome }}</h1>
+		<h1>Editar Categoria: {{ $categoria->name }}</h1>
 
 		@if ($errors->any())
 			<ul class='alert'>
@@ -14,12 +14,12 @@
 		
 		{!! Form::open(['route'=>['categorias.atualizar',$categoria->id], 'method'=>'put'])  !!}
 		<div class='form-group'>
-			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', $categoria->nome, ['class'=>'form-control']) !!}
+			{!! Form::label('name', 'Nome:') !!}
+			{!! Form::text('name', $categoria->name, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('descricao', 'Descrição:') !!}
-			{!! Form::textarea('descricao', $categoria->descricao, ['class'=>'form-control']) !!}
+			{!! Form::label('description', 'Descrição:') !!}
+			{!! Form::textarea('description', $categoria->description, ['class'=>'form-control']) !!}
 		</div>
 
 		<div class='form-group'>
