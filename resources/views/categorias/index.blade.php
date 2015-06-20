@@ -13,7 +13,7 @@
 				<th>Descrição</th>	
 				<th>Ações</th>
 			</tr>		
-			@foreach($categorias as $categoria)
+			@forelse($categorias as $categoria)
 			<tr>
 				<td>{{ $categoria->id }}</td>
 				<td>{{ $categoria->nome }}</td>
@@ -23,7 +23,14 @@
 					<a href="{{route('categorias.deletar',['id'=>$categoria->id])}}">Deletar</a>
 				</td>
 			</tr>
-			@endforeach
-		</table>		
+			@empty
+				<tr>
+					<td colspan='4'>Nenhuma categoria encontrado!</td>
+				</tr>
+			@endforelse
+		</table>	
+		<div class='pull-right'>
+			{!! $categorias->render() !!}	
+		</div>
 	</div>
 @endsection

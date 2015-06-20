@@ -12,14 +12,14 @@ class CategoriasController extends Controller
 {
 	private $categoriaModel;
 
-	public function __construct(Categoria $categoriaModel){
-		$this->categoriaModel = $categoriaModel;
-		// $this->middleware('auth');
+	public function __construct(Categoria $categoriaModel)
+    {
+		$this->categoriaModel = $categoriaModel;		
 	}
 
     public function index()
     {
-    	$categorias = $this->categoriaModel->all();
+    	$categorias = $this->categoriaModel->paginate($this->porPagina);
     	return view('categorias.index', compact('categorias'));
     }
 

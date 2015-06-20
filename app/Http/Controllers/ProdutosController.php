@@ -19,7 +19,7 @@ class ProdutosController extends Controller
 
     public function index()
     {
-        $produtos = $this->produtoModel->all();
+        $produtos = $this->produtoModel->paginate($this->porPagina);
 
         return view('produtos.index', compact('produtos'));
     }
@@ -32,7 +32,7 @@ class ProdutosController extends Controller
     
     public function adicionar(Request $request)
     {
-        if($request->isMethod('post')){
+        if($request->isMethod('post')){            
             $this->produtoModel->create($request->all());
             return redirect()->route('produtos');
         }
@@ -41,6 +41,9 @@ class ProdutosController extends Controller
     public function editar(Request $request, $id)
     {
         $produto = $this->produtoModel->find($id);          
+        if(!$produto){
+            return redirect()->route('produtos');
+        }        
 
         return view('produtos.editar', compact('produto'));
     }

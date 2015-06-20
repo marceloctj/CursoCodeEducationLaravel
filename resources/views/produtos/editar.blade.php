@@ -26,6 +26,10 @@
 			{!! Form::number('preco', $produto->preco, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
+			{!! Form::label('featured', 'Featured') !!} {!! Form::checkbox('featured', 1, $produto->featured) !!}<br>
+			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1, $produto->recommend) !!}
+		</div>
+		<div class='form-group'>
 			{!! Form::submit('Editar Produto', ['class'=>'btn btn-primary form-control']) !!}
 		</div>
 		{!! Form::close() !!}

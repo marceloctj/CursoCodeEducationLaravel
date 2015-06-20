@@ -26,6 +26,10 @@
 			{!! Form::number('preco', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class='form-group'>
+			{!! Form::label('featured', 'Featured') !!} {!! Form::checkbox('featured', 1) !!}<br>
+			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1) !!}
+		</div>
+		<div class='form-group'>
 			{!! Form::submit('Cadastrar Produto', ['class'=>'btn btn-primary form-control']) !!}
 		</div>
 		{!! Form::close() !!}
