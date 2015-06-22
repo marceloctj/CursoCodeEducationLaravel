@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class='container'>
-		<h1>Editar Produto: {{ $categoria->name }}</h1>
+		<h1>Editar Produto: {{ $produto->name }}</h1>
 
 		@if ($errors->any())
 			<ul class='alert'>
