@@ -3,8 +3,9 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Http\Controllers\Controller;
-use CodeCommerce\Produto;
 use CodeCommerce\Http\Requests;
+use CodeCommerce\Produto;
+use CodeCommerce\Categoria;
 
 use Illuminate\Http\Request;
 
@@ -24,10 +25,10 @@ class ProdutosController extends Controller
         return view('produtos.index', compact('produtos'));
     }
 
-    public function cadastrar()
+    public function cadastrar(Categoria $categoria)
     {
-        $action = 'produtos.adicionar';
-        return view('produtos.cadastrar');
+        $categorias = $categoria->lists('name','id');        
+        return view('produtos.cadastrar', compact('categorias'));
     }
     
     public function adicionar(Request $request)
@@ -39,14 +40,16 @@ class ProdutosController extends Controller
         }
     }
 
-    public function editar(Request $request, $id)
+    public function editar(Categoria $categoria, $id)
     {
         $produto = $this->produtoModel->find($id);          
         if(!$produto){
             return redirect()->route('produtos');
         }        
 
-        return view('produtos.editar', compact('produto'));
+        $categorias = $categoria->lists('name','id');        
+
+        return view('produtos.editar', compact('produto','categorias'));
     }
 
     public function atualizar(Request $request, $id)

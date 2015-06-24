@@ -14,6 +14,11 @@
 		
 		{!! Form::open(['route'=>'produtos.adicionar'])  !!}
 		<div class='form-group'>
+			{!! Form::label('categoria_id', 'Categoria:') !!}
+			{!! Form::select('categoria_id', $categorias, null, ['class'=>'form-control']) !!}
+		</div>
+
+		<div class='form-group'>
 			{!! Form::label('name', 'Nome:') !!}
 			{!! Form::text('name', null, ['class'=>'form-control']) !!}
 		</div>
@@ -30,7 +35,7 @@
 			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1) !!}
 		</div>
 		<div class='form-group'>
-			<button type='submit' class='btn btn-primary form-control'>
+			<button type='submit' class='btn btn-primary'>
 				<span class='glyphicon glyphicon-ok'></span> Cadastrar Produto
 			</button>			
 		</div>

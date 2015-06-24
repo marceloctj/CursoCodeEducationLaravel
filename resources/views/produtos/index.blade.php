@@ -12,7 +12,8 @@
 			<tr>
 				<th>ID</th>	
 				<th>Nome</th>	
-				<th>Descrição</th>	
+				<th>Descrição</th>
+				<th>Categoria</th>	
 				<th>Preço</th>
 				<th>Featured</th>
 				<th>Recommend</th>
@@ -22,7 +23,8 @@
 				<tr>
 					<td>{{ $produto->id }}</td>
 					<td>{{ $produto->name }}</td>
-					<td>{{ substr($produto->description,0,70) }}...</td>
+					<td>{{ str_limit($produto->description, $limit = 100,$end='...') }}</td>
+					<td>{{ $produto->categoria->name }}</td>
 					<td>R$ {{ $produto->price }}</td>
 					<td>{{ ($produto->featured)? 'Sim':'Não' }}</td>
 					<td>{{ ($produto->recommend)? 'Sim':'Não' }}</td>

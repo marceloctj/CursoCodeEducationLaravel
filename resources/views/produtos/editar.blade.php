@@ -13,6 +13,12 @@
 		@endif
 		
 		{!! Form::open(['route'=>['produtos.atualizar',$produto->id], 'method'=>'put']) !!}
+
+		<div class='form-group'>
+			{!! Form::label('categoria_id', 'Categoria:') !!}
+			{!! Form::select('categoria_id', $categorias, $produto->categoria->id, ['class'=>'form-control']) !!}
+		</div>
+
 		<div class='form-group'>
 			{!! Form::label('name', 'Nome:') !!}
 			{!! Form::text('name', $produto->name, ['class'=>'form-control']) !!}
@@ -30,7 +36,9 @@
 			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1, $produto->recommend) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::submit('Editar Produto', ['class'=>'btn btn-primary form-control']) !!}
+			<button type='submit' class='btn btn-primary'>
+				<span class='glyphicon glyphicon-ok'></span> Editar Produto
+			</button>	
 		</div>
 		{!! Form::close() !!}
 	</div>

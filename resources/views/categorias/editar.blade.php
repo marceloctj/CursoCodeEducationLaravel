@@ -23,7 +23,9 @@
 		</div>
 
 		<div class='form-group'>
-			{!! Form::submit('Editar Categoria', ['class'=>'btn btn-primary']) !!}
+			<button type='submit' class='btn btn-primary'>
+				<span class='glyphicon glyphicon-ok'></span> Editar Categoria
+			</button>	
 		</div>
 		{!! Form::close() !!}
 	</div>

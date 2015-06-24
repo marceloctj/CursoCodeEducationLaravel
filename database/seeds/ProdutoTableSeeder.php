@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use CodeCommerce\Produto;
 
 class ProdutoTableSeeder extends Seeder
 {
@@ -15,6 +14,6 @@ class ProdutoTableSeeder extends Seeder
     {
         DB::table('produto')->truncate();
 
-        factory('CodeCommerce\Produto', 500)->create();
+        factory('CodeCommerce\Produto', 150)->create();
     }
 }

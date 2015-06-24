@@ -16,6 +16,9 @@ class AlterTableProdutos extends Migration
 
     public function down()
     {
-    	
+    	Schema::table('produto', function (Blueprint $table) {
+            $table->removeColumn('featured');
+            $table->removeColumn('recommend');
+        });
     }
 }

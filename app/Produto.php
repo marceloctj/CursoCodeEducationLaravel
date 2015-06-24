@@ -8,5 +8,17 @@ class Produto extends Model
 {
     protected $table 	= 'produto';
 
-    protected $fillable = ['name','description','price', 'featured', 'recommend'];
+    protected $fillable = [
+    	'name',
+    	'description',
+    	'price',
+    	'featured',
+    	'recommend',
+    	'categoria_id'
+    ];
+
+    public function categoria()
+    {
+    	return $this->belongsTo('CodeCommerce\Categoria');
+    }
 }
