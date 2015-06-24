@@ -4,7 +4,10 @@
 	<div class='container'>
 		<h1>Categorias</h1>
 
-		<a href="{{ route('categorias.cadastrar') }}" class='btn btn-default'>Cadastrar</a><br><br>
+		<a href="{{ route('categorias.cadastrar') }}" class='btn btn-primary'>
+			<span class='glyphicon glyphicon-plus' aria-hidden="true"></span> Cadastrar
+		</a>
+		<br><br>
 
 		<table class='table'>
 			<tr>
@@ -19,8 +22,8 @@
 				<td>{{ $categoria->name }}</td>
 				<td>{{ $categoria->description }}</td>
 				<td>
-					<a href="{{route('categorias.editar',['id'=>$categoria->id])}}">Editar</a> | 
-					<a href="{{route('categorias.deletar',['id'=>$categoria->id])}}">Deletar</a>
+					<a href="{{route('categorias.editar',['id'=>$categoria->id])}}"><span class='glyphicon glyphicon-pencil'></span></a> | 
+					<a href="{{route('categorias.deletar',['id'=>$categoria->id])}}"><span class='glyphicon glyphicon-trash'></span></a>
 				</td>
 			</tr>
 			@empty

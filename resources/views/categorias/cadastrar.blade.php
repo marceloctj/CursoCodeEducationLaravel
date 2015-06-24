@@ -5,11 +5,13 @@
 		<h1>Cadastrar Categoria</h1>
 
 		@if ($errors->any())
-			<ul class='alert'>
+			<div class='alert alert-danger'>
+				<ul>
 				@foreach($errors->all() as $error)					
 					<li>{{ $error }}</li>
 				@endforeach
-			</ul>
+				</ul>
+			</div>
 		@endif
 		
 		{!! Form::open(['route'=>'categorias.adicionar'])  !!}

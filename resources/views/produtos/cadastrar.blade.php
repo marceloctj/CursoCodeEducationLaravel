@@ -30,7 +30,9 @@
 			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::submit('Cadastrar Produto', ['class'=>'btn btn-primary form-control']) !!}
+			<button type='submit' class='btn btn-primary form-control'>
+				<span class='glyphicon glyphicon-ok'></span> Cadastrar Produto
+			</button>			
 		</div>
 		{!! Form::close() !!}
 	</div>

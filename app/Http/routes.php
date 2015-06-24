@@ -8,6 +8,9 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'WelcomeController@teste');
 
 Route::group(['prefix'=>'admin'], function(){
+	Route::get('', function(){		
+		return view('app');		
+	});
 	Route::group(['prefix'=>'categories'], function(){
 		Route::get('/', ['as'=>'categorias', 'uses'=>'CategoriasController@index']);
 		Route::get('/create',['as'=>'categorias.cadastrar', 'uses'=> 'CategoriasController@cadastrar']);

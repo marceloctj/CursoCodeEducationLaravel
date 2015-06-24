@@ -55,8 +55,19 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	@if(Request::session()->get('success'))
+		<div class='alert alert-success container'>
+			{{ Request::session()->get('success') }}
+		</div>
+	@endif
+	@if(Request::session()->get('error'))
+		<div class='alert alert-danger container'>
+			{{ Request::session()->get('error') }}
+		</div>		
+	@endif
 
+	@yield('content')
+	
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>

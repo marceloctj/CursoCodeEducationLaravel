@@ -1,12 +1,14 @@
 @extends('app')
 
-@section('content')
+@section('content')	 	
 	<div class='container'>
-		<h1>Produtos</h1>
+		<h1 class='clearfix'>Produtos</h1>
 
-		<a href="{{ route('produtos.cadastrar') }}" class='btn btn-default'>Cadastrar</a><br><br>
-
-		<table class='table'>
+		<a href="{{ route('produtos.cadastrar') }}" class='btn btn-primary'>
+			<span class='glyphicon glyphicon-plus' aria-hidden="true"></span> Cadastrar
+		</a>
+		<br><br>
+		<table class='table table-hover'>
 			<tr>
 				<th>ID</th>	
 				<th>Nome</th>	
@@ -20,13 +22,13 @@
 				<tr>
 					<td>{{ $produto->id }}</td>
 					<td>{{ $produto->name }}</td>
-					<td>{{ $produto->description }}</td>
+					<td>{{ substr($produto->description,0,70) }}...</td>
 					<td>R$ {{ $produto->price }}</td>
 					<td>{{ ($produto->featured)? 'Sim':'Não' }}</td>
 					<td>{{ ($produto->recommend)? 'Sim':'Não' }}</td>
 					<td>
-						<a href="{{route('produtos.editar',['id'=>$produto->id])}}">Editar</a> | 
-						<a href="{{route('produtos.deletar',['id'=>$produto->id])}}">Deletar</a>
+						<a href="{{route('produtos.editar',['id'=>$produto->id])}}"><span class='glyphicon glyphicon-pencil'></span></a> | 
+						<a href="{{route('produtos.deletar',['id'=>$produto->id])}}"><span class='glyphicon glyphicon-trash'></span></a>
 					</td>
 				</tr>
 			@empty
@@ -38,5 +40,5 @@
 		<div class='pull-right'>		
 			{!! $produtos->render() !!}	
 		</div>
-	</div>
+	</div>	
 @endsection

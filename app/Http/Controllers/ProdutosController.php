@@ -18,8 +18,8 @@ class ProdutosController extends Controller
     }
 
     public function index()
-    {
-        $produtos = $this->produtoModel->paginate($this->porPagina);
+    {        
+        $produtos = $this->produtoModel->orderBy('id','DESC')->paginate($this->porPagina);
 
         return view('produtos.index', compact('produtos'));
     }
@@ -34,6 +34,7 @@ class ProdutosController extends Controller
     {
         if($request->isMethod('post')){            
             $this->produtoModel->create($request->all());
+            $request->session()->flash('success','Produto cadastrado com sucesso!');
             return redirect()->route('produtos');
         }
     }
@@ -52,13 +53,15 @@ class ProdutosController extends Controller
     {
         if($request->isMethod('put')){
             $this->produtoModel->find($id)->update($request->all());
+            $request->session()->flash('success','Produto foi editado com sucesso!');
             return redirect()->route('produtos');
         }
     }
 
-    public function deletar($id)
+    public function deletar(Request $request, $id)
     {
         $this->produtoModel->find($id)->delete();
+        $request->session()->flash('success','Produto excluido com sucesso!');
         return redirect()->route('produtos');
     }
 

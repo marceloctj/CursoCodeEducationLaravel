@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
         	'password'=>Hash::make('123456')
         ]);
 
-        factory('CodeCommerce\User', 10)->create();
+        factory('CodeCommerce\User', 20)->create();
 
     }
 }
