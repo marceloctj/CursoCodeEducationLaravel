@@ -5,9 +5,12 @@ namespace CodeCommerce\Http\Controllers;
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Produto;
+use CodeCommerce\ProdutoImagem;
 use CodeCommerce\Categoria;
 
 use Illuminate\Http\Request;
+use Storage;
+use File;
 
 class ProdutosController extends Controller
 {    
@@ -64,8 +67,35 @@ class ProdutosController extends Controller
     public function deletar(Request $request, $id)
     {
         $this->produtoModel->find($id)->delete();
-        $request->session()->flash('success','Produto excluido com sucesso!');
+
+        $request->session()->flash('success','Produto excluido com sucesso!');        
+
         return redirect()->route('produtos');
+    }
+
+    public function imagens($id)
+    {
+        $produto = $this->produtoModel->find($id);
+
+        return view('produtos.imagens', compact('produto'));
+    }
+
+    public function cadastrarImagem($id)
+    {
+        $produto = $this->produtoModel->find($id);
+
+        return view('produtos.cadastrar_imagem', compact('produto'));
+    }
+
+    public function adicionarImagem(Request $request, $id, ProdutoImagem $produtoImagem)
+    {
+        $file     = $request->file('imagem');
+        $extensao = $file->getClientOriginalExtension();
+        $imagem   = $produtoImagem->create(['produto_id'=>$id, 'extension'=>$extensao]);
+
+        Storage::disk('public_local')->put($imagem->id . '.' . $extensao, File::get($file));
+
+        return redirect()->route('produtos.imagens', ['id'=>$id]);
     }
 
 }

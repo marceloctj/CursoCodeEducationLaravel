@@ -21,4 +21,9 @@ class Produto extends Model
     {
     	return $this->belongsTo('CodeCommerce\Categoria');
     }
+    
+    public function imagens()
+    {
+        return $this->hasMany('CodeCommerce\ProdutoImagem');
+    }
 }

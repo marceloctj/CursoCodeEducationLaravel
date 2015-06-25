@@ -17,7 +17,7 @@
 				<th>Preço</th>
 				<th>Featured</th>
 				<th>Recommend</th>
-				<th>Ações</th>
+				<th style='width:100px'>Ações</th>
 			</tr>
 			@forelse($produtos as $produto)
 				<tr>
@@ -29,6 +29,7 @@
 					<td>{{ ($produto->featured)? 'Sim':'Não' }}</td>
 					<td>{{ ($produto->recommend)? 'Sim':'Não' }}</td>
 					<td>
+						<a href="{{route('produtos.imagens',['id'=>$produto->id])}}"><span class='glyphicon glyphicon-picture'></span></a> |
 						<a href="{{route('produtos.editar',['id'=>$produto->id])}}"><span class='glyphicon glyphicon-pencil'></span></a> | 
 						<a href="{{route('produtos.deletar',['id'=>$produto->id])}}"><span class='glyphicon glyphicon-trash'></span></a>
 					</td>

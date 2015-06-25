@@ -21,12 +21,21 @@ Route::group(['prefix'=>'admin'], function(){
 	});
 
 	Route::group(['prefix'=>'products'], function(){
+
 		Route::get('/', ['as'=>'produtos', 'uses'=>'ProdutosController@index']);
 		Route::get('/create',['as'=>'produtos.cadastrar', 'uses'=> 'ProdutosController@cadastrar']);
 		Route::post('/store', ['as'=>'produtos.adicionar', 'uses'=>'ProdutosController@adicionar']);
 		Route::get('/{id}/destroy', ['as'=>'produtos.deletar', 'uses'=>'ProdutosController@deletar']);
 		Route::get('/{id}/edit', ['as'=>'produtos.editar', 'uses'=>'ProdutosController@editar']);
-		Route::put('/{id}/update', ['as'=>'produtos.atualizar', 'uses'=>'ProdutosController@atualizar']);
+		Route::put('/{id}/update', ['as'=>'produtos.atualizar', 'uses'=>'ProdutosController@atualizar']); 
+
+		Route::group(['prefix'=>'images'], function(){
+
+			Route::get('/{id}/product', ['as'=>'produtos.imagens', 'uses'=>'ProdutosController@imagens']);
+			Route::get('create/{id}/product', ['as'=>'produtos.imagens.cadastrar', 'uses'=>'ProdutosController@cadastrarImagem']);
+			Route::post('adicionar/{id}/product', ['as'=>'produtos.imagens.adicionar', 'uses'=>'ProdutosController@adicionarImagem']);
+
+		});
 	});
 });
 
