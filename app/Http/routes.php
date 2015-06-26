@@ -33,7 +33,8 @@ Route::group(['prefix'=>'admin'], function(){
 
 			Route::get('/{id}/product', ['as'=>'produtos.imagens', 'uses'=>'ProdutosController@imagens']);
 			Route::get('create/{id}/product', ['as'=>'produtos.imagens.cadastrar', 'uses'=>'ProdutosController@cadastrarImagem']);
-			Route::post('adicionar/{id}/product', ['as'=>'produtos.imagens.adicionar', 'uses'=>'ProdutosController@adicionarImagem']);
+			Route::post('storage/{id}/product', ['as'=>'produtos.imagens.adicionar', 'uses'=>'ProdutosController@adicionarImagem']);
+			Route::get('destroy/{id}/imagem', ['as'=>'produtos.imagens.deletar', 'uses'=>'ProdutosController@deletarImagem']);
 
 		});
 	});

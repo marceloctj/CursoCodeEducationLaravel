@@ -14,8 +14,8 @@
 		
 		{!! Form::open(['route'=>['produtos.imagens.adicionar', $produto->id], 'method'=>'post','enctype'=>'multipart/form-data']) !!}
 		<div class='form-group'>
-			{!! Form::label('image', 'Imagem:') !!}
-			{!! Form::file('imagem', ['class'=>'form-control','multiple']) !!}
+			{!! Form::label('imagem', 'Imagem:') !!}
+			{!! Form::file('imagem', ['class'=>'form-control']) !!}
 		</div>
 
 		<div class='form-group'>

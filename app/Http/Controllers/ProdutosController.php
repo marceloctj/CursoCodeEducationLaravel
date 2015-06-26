@@ -90,12 +90,27 @@ class ProdutosController extends Controller
     public function adicionarImagem(Request $request, $id, ProdutoImagem $produtoImagem)
     {
         $file     = $request->file('imagem');
+
         $extensao = $file->getClientOriginalExtension();
         $imagem   = $produtoImagem->create(['produto_id'=>$id, 'extension'=>$extensao]);
 
-        Storage::disk('public_local')->put($imagem->id . '.' . $extensao, File::get($file));
+        Storage::disk('public_local')->put('produto_' . $id . '_imagem_' . $imagem->id . '.' . $extensao, File::get($file));
 
         return redirect()->route('produtos.imagens', ['id'=>$id]);
+    }
+
+    public function deletarImagem(ProdutoImagem $produtoImagem, $id)
+    {
+        $imagem = $produtoImagem->find($id);
+        $nomeImagem = 'produto_' . $imagem->produto->id . '_imagem_' . $imagem->id.'.'.$imagem->extension;
+
+        if(file_exists(public_path() . '/uploads/' . $nomeImagem))  
+            Storage::disk('public_local')->delete($nomeImagem);
+
+        $produto = $imagem->produto;
+        $imagem->delete();
+
+        return redirect()->route('produtos.imagens',['id'=>$produto->id]);
     }
 
 }
