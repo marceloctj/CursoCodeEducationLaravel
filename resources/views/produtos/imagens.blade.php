@@ -18,7 +18,7 @@
 			@forelse($produto->imagens as $imagem)
 				<tr>
 					<td>{{ $imagem->id }}</td>
-					<td><img src={{ url('uploads/produto_' . $produto->id . '_imagem_' . $imagem->id . '.' . $imagem->extension) }} width='100'></td>
+					<td><img src={{ url('uploads/'.$produto->id . '/imagem_' . $imagem->id . '.' . $imagem->extension) }} width='100'></td>
 					<td>{{ $imagem->extension }}</td>					
 					<td>	
 						<a href='{{route('produtos.imagens.deletar',['id'=>$imagem->id])}}'>Deletar</a>

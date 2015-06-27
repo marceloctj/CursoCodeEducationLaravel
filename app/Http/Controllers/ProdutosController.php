@@ -66,7 +66,16 @@ class ProdutosController extends Controller
 
     public function deletar(Request $request, $id)
     {
-        $this->produtoModel->find($id)->delete();
+
+        $produto = $this->produtoModel->find($id);
+
+        foreach($produto->imagens as $imagem){            
+            $nomeImagem = 'produto_' . $id . '_imagem_' . $imagem->id.'.'.$imagem->extension;            
+            if(file_exists(public_path() . '/uploads/' . $nomeImagem))  
+                Storage::disk('public_local')->delete($nomeImagem);
+        }
+
+        $produto->delete();
 
         $request->session()->flash('success','Produto excluido com sucesso!');        
 
@@ -94,7 +103,7 @@ class ProdutosController extends Controller
         $extensao = $file->getClientOriginalExtension();
         $imagem   = $produtoImagem->create(['produto_id'=>$id, 'extension'=>$extensao]);
 
-        Storage::disk('public_local')->put('produto_' . $id . '_imagem_' . $imagem->id . '.' . $extensao, File::get($file));
+        Storage::disk('public_local')->put($id.'/imagem_' . $imagem->id . '.' . $extensao, File::get($file));
 
         return redirect()->route('produtos.imagens', ['id'=>$id]);
     }
@@ -102,7 +111,7 @@ class ProdutosController extends Controller
     public function deletarImagem(ProdutoImagem $produtoImagem, $id)
     {
         $imagem = $produtoImagem->find($id);
-        $nomeImagem = 'produto_' . $imagem->produto->id . '_imagem_' . $imagem->id.'.'.$imagem->extension;
+        $nomeImagem = $imagem->produto->id . '/imagem_' . $imagem->id.'.'.$imagem->extension;
 
         if(file_exists(public_path() . '/uploads/' . $nomeImagem))  
             Storage::disk('public_local')->delete($nomeImagem);
