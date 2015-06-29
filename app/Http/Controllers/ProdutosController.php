@@ -34,7 +34,7 @@ class ProdutosController extends Controller
         return view('produtos.cadastrar', compact('categorias'));
     }
     
-    public function adicionar(Request $request)
+    public function adicionar(Requests\ProdutoRequest $request)
     {
         if($request->isMethod('post')){            
             $this->produtoModel->create($request->all());
@@ -96,14 +96,14 @@ class ProdutosController extends Controller
         return view('produtos.cadastrar_imagem', compact('produto'));
     }
 
-    public function adicionarImagem(Request $request, $id, ProdutoImagem $produtoImagem)
+    public function adicionarImagem(Requests\ProdutoImagemRequest $request, $id, ProdutoImagem $produtoImagem)
     {
         $file     = $request->file('imagem');
-
         $extensao = $file->getClientOriginalExtension();
+
         $imagem   = $produtoImagem->create(['produto_id'=>$id, 'extension'=>$extensao]);
 
-        Storage::disk('public_local')->put($id.'/imagem_' . $imagem->id . '.' . $extensao, File::get($file));
+        Storage::disk('s3')->put($id.'/imagem_' . $imagem->id . '.' . $extensao, File::get($file));
 
         return redirect()->route('produtos.imagens', ['id'=>$id]);
     }

@@ -71,10 +71,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key'    => 'AKIAJRBYNOXSODVDL3RQ',
+            'secret' => '7G+00vc5mJ4JhC+8yWoAA+xpOPcyYC9TQ5wARxv7',
+            'region' => 'Sao Paulo',
+            'bucket' => 'mctj19',
         ],
 
         'rackspace' => [

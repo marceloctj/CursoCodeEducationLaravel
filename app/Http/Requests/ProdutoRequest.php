@@ -4,7 +4,7 @@ namespace CodeCommerce\Http\Requests;
 
 use CodeCommerce\Http\Requests\Request;
 
-class CategoriasRequest extends Request
+class ProdutoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,10 @@ class CategoriasRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name'=> 'required|min:5',
-            'description'=>'required'
+         return [
+            'name'       =>'required|min:5',
+            'description'=>'required',
+            'price'      =>'required|numeric'
         ];
     }
 }
