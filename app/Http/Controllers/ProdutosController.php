@@ -7,6 +7,7 @@ use CodeCommerce\Http\Requests;
 use CodeCommerce\Produto;
 use CodeCommerce\ProdutoImagem;
 use CodeCommerce\Categoria;
+use CodeCommerce\Tag;
 
 use Illuminate\Http\Request;
 use Storage;
@@ -15,10 +16,12 @@ use File;
 class ProdutosController extends Controller
 {    
     private $produtoModel;
+    private $tagModel;
 
-    public function __construct(Produto $produto)
+    public function __construct(Produto $produto, Tag $tags)
     {
         $this->produtoModel = $produto;
+        $this->tagModel     = $tags;
     }
 
     public function index()
@@ -36,10 +39,20 @@ class ProdutosController extends Controller
     
     public function adicionar(Requests\ProdutoRequest $request)
     {
-        if($request->isMethod('post')){            
-            $this->produtoModel->create($request->all());
-            $request->session()->flash('success','Produto cadastrado com sucesso!');
-            return redirect()->route('produtos');
+        if($request->isMethod('post')){
+
+            $tagsInput      = $request->input('tags');
+            $tagsInput      = explode(',', trim($tagsInput));
+
+            $tagsParaSalvar = $this->_getIdTags($tagsInput);
+
+            $produto = $this->produtoModel->create($request->all());
+
+            if($produto){
+                $produto->tags()->attach($tagsParaSalvar);
+                $request->session()->flash('success','Produto cadastrado com sucesso!');
+                return redirect()->route('produtos');
+            }            
         }
     }
 
@@ -50,17 +63,29 @@ class ProdutosController extends Controller
             return redirect()->route('produtos');
         }        
 
-        $categorias = $categoria->lists('name','id');        
+        $categorias = $categoria->lists('name','id');
+        $tags       = $produto->tagsList;        
 
-        return view('produtos.editar', compact('produto','categorias'));
+        return view('produtos.editar', compact('produto','categorias','tags'));
     }
 
     public function atualizar(Request $request, $id)
     {
         if($request->isMethod('put')){
-            $this->produtoModel->find($id)->update($request->all());
-            $request->session()->flash('success','Produto foi editado com sucesso!');
-            return redirect()->route('produtos');
+
+            $tagsInput      = $request->input('tags');
+            $tagsInput      = explode(',', trim($tagsInput));
+
+            $tagsParaSalvar = $this->_getIdTags($tagsInput);
+
+            $produto = $this->produtoModel->find($id);
+            $update = $produto->update($request->all());            
+
+            if($update){
+                $produto->tags()->sync($tagsParaSalvar);
+                $request->session()->flash('success','Produto foi editado com sucesso!');
+                return redirect()->route('produtos');
+            }
         }
     }
 
@@ -74,6 +99,8 @@ class ProdutosController extends Controller
             if(file_exists(public_path() . '/uploads/' . $nomeImagem))  
                 Storage::disk('public_local')->delete($nomeImagem);
         }
+
+        $produto->tags()->detach();
 
         $produto->delete();
 
@@ -103,7 +130,7 @@ class ProdutosController extends Controller
 
         $imagem   = $produtoImagem->create(['produto_id'=>$id, 'extension'=>$extensao]);
 
-        Storage::disk('s3')->put($id.'/imagem_' . $imagem->id . '.' . $extensao, File::get($file));
+        Storage::disk('public_local')->put($id.'/imagem_' . $imagem->id . '.' . $extensao, File::get($file));
 
         return redirect()->route('produtos.imagens', ['id'=>$id]);
     }
@@ -120,6 +147,29 @@ class ProdutosController extends Controller
         $imagem->delete();
 
         return redirect()->route('produtos.imagens',['id'=>$produto->id]);
+    }
+
+    private function _getIdTags($tagsInput)
+    {
+        //Eu fiz assim porque ele retorna um objeto e por isso da erro quando uso funções de "array"
+        $tagsExistentes = json_decode(json_encode($this->tagModel->lists('name','id')),true);                        
+        $tagsParaSalvar = [];
+
+        foreach($tagsInput as $tag){         
+            $tag = ucfirst(trim($tag)); 
+            if($tag != ''){
+                $key = array_search($tag, $tagsExistentes);
+                if(!$key){
+                    $id                  = $this->tagModel->create(['name'=>$tag])->id;
+                    $tagsParaSalvar[]    = $id;                               
+                    $tagsExistentes[$id] = $tag;
+                }else{
+                    $tagsParaSalvar[] = $key;
+                }
+            }
+        }
+
+        return $tagsParaSalvar;
     }
 
 }

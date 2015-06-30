@@ -36,6 +36,6 @@ class Produto extends Model
     {
         $tags = json_decode(json_encode($this->tags->lists('name','id')), true);        
         
-        return join(',', $tags);
+        return join(', ', $tags);
     }
 }

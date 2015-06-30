@@ -73,7 +73,7 @@ return [
             'driver' => 's3',
             'key'    => 'AKIAJRBYNOXSODVDL3RQ',
             'secret' => '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',
-            'region' => 'Sao Paulo',
+            'region' => 'SaoPaulo',
             'bucket' => 'mctj19',
         ],
 

@@ -36,6 +36,10 @@
 			{!! Form::label('recommend', 'Recommend') !!} {!! Form::checkbox('recommend', 1, $produto->recommend) !!}
 		</div>
 		<div class='form-group'>
+			{!! Form::label('tags', 'Tags:') !!}
+			{!! Form::textarea('tags', $tags, ['class'=>'form-control']) !!}
+		</div>
+		<div class='form-group'>
 			<button type='submit' class='btn btn-primary'>
 				<span class='glyphicon glyphicon-ok'></span> Editar Produto
 			</button>	
