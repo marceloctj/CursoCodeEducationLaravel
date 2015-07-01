@@ -79,8 +79,9 @@ class ProdutosController extends Controller
             $tagsParaSalvar = $this->_getIdTags($tagsInput);
 
             $produto = $this->produtoModel->find($id);
+            
             $update = $produto->update($request->all());            
-
+            
             if($update){
                 $produto->tags()->sync($tagsParaSalvar);
                 $request->session()->flash('success','Produto foi editado com sucesso!');
@@ -156,7 +157,8 @@ class ProdutosController extends Controller
         $tagsParaSalvar = [];
 
         foreach($tagsInput as $tag){         
-            $tag = ucfirst(trim($tag)); 
+            $tag = ucfirst(trim($tag));
+             
             if($tag != ''){
                 $key = array_search($tag, $tagsExistentes);
                 if(!$key){

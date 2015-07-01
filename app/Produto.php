@@ -32,10 +32,22 @@ class Produto extends Model
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
+    //Atributes
     public function getTagsListAttribute()
     {
         $tags = json_decode(json_encode($this->tags->lists('name','id')), true);        
         
         return join(', ', $tags);
+    }
+    //End Atributes
+
+    public function scopeEmDestaque($query)
+    {
+        return $query->where('featured','=','1');
+    }
+
+    public function scopeRecomendados($query)
+    {
+        return $query->where('recommend','=','1');
     }
 }

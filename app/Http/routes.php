@@ -1,11 +1,12 @@
 <?php
 //Validação
 
-Route::pattern('id','[0-9]+');
+Route::pattern('id', '[0-9]+');
+Route::pattern('categoriaId', '[0-9]+');
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'StoreController@index');
 
-Route::get('home', 'WelcomeController@teste');
+Route::get('/produtos/{categoriaId}/categoria', ['as'=>'store.produtos.categorias', 'uses'=>'StoreController@produtosPorCategoria']);
 
 Route::group(['prefix'=>'admin'], function(){
 	Route::get('', function(){		
