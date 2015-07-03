@@ -16,6 +16,7 @@
 
                                 @if(count($dProduto->imagens))
                                     <img src="{{url('uploads/' . $dProduto->id . '/imagem_' . $dProduto->imagens->first()->id .'.' . $dProduto->imagens->first()->extension)}}" alt="" width='200'/>
+                                    }
                                 @else
                                     <img src="{{url('images/no-img.jpg')}}" alt="" width='200'/>
                                 @endif

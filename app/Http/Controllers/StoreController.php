@@ -34,9 +34,7 @@ class StoreController extends Controller
     public function produtosPorCategoria($categoriaId)
     {
     	$categoriasSideBar = $this->categoriaModel->all();
-
     	$categoria 		   = $this->categoriaModel->find($categoriaId);
-
     	$produtos  		   = $this->produtoModel->where('categoria_id','=',$categoriaId)->paginate(9);
 
     	return view('store.produtosPorCategoria', compact('categoriasSideBar','categoria','produtos'));
