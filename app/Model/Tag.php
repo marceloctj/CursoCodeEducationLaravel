@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeCommerce;
+namespace CodeCommerce\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Tag extends Model
 
     public function produtos()
     {
-    	return $this->belongsToMany('CodeCommerce\Produto');
+    	return $this->belongsToMany('CodeCommerce\Model\Produto');
     }
 }

@@ -4,10 +4,10 @@ namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Http\Requests;
-use CodeCommerce\Produto;
-use CodeCommerce\ProdutoImagem;
-use CodeCommerce\Categoria;
-use CodeCommerce\Tag;
+use CodeCommerce\Model\Produto;
+use CodeCommerce\Model\ProdutoImagem;
+use CodeCommerce\Model\Categoria;
+use CodeCommerce\Model\Tag;
 
 use Illuminate\Http\Request;
 use Storage;

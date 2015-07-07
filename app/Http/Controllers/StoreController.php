@@ -7,18 +7,21 @@ use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
-use CodeCommerce\Categoria;
-use CodeCommerce\Produto;
+use CodeCommerce\Model\Categoria;
+use CodeCommerce\Model\Tag;
+use CodeCommerce\Model\Produto;
 
 class StoreController extends Controller
 {
 	private $produtoModel;
 	private $categoriaModel;
+    private $tagModel;
 
-	public function __construct(Produto $produto, Categoria $categoria)
+	public function __construct(Produto $produto, Categoria $categoria, Tag $tag)
 	{
 		$this->produtoModel   = $produto;
 		$this->categoriaModel = $categoria;
+        $this->tagModel       = $tag;
 	}
 
     public function index()
@@ -35,8 +38,34 @@ class StoreController extends Controller
     {
     	$categoriasSideBar = $this->categoriaModel->all();
     	$categoria 		   = $this->categoriaModel->find($categoriaId);
-    	$produtos  		   = $this->produtoModel->where('categoria_id','=',$categoriaId)->paginate(9);
 
-    	return view('store.produtosPorCategoria', compact('categoriasSideBar','categoria','produtos'));
+        if($categoria){
+        	$produtos = $categoria->produtos()->paginate(9);
+        	return view('store.produtosPorCategoria', compact('categoriasSideBar','categoria','produtos'));
+        }else{
+            return redirect()->route('store.index');
+        }
+    }
+
+    public function produtosPorTags($tagId)
+    {
+        $categoriasSideBar = $this->categoriaModel->all();
+        $tag               = $this->tagModel->find($tagId);
+        
+        if($tag){
+            $produtos = $tag->produtos()->paginate(9);            
+            return view('store.produtosPorTag', compact('categoriasSideBar','tag','produtos'));
+        }else{
+            return redirect()->route('store.index');
+        }
+    }
+
+    public function produto($id)
+    {
+
+        $categoriasSideBar = $this->categoriaModel->all();
+        $produto           = $this->produtoModel->find($id);
+
+        return view('store.produto', compact('categoriasSideBar','produto'));
     }
 }

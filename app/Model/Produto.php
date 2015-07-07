@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeCommerce;
+namespace CodeCommerce\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,17 +19,17 @@ class Produto extends Model
 
     public function categoria()
     {
-    	return $this->belongsTo('CodeCommerce\Categoria');
+    	return $this->belongsTo('CodeCommerce\Model\Categoria');
     }
     
     public function imagens()
     {
-        return $this->hasMany('CodeCommerce\ProdutoImagem');
+        return $this->hasMany('CodeCommerce\Model\ProdutoImagem');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('CodeCommerce\Tag');
+        return $this->belongsToMany('CodeCommerce\Model\Tag');
     }
 
     //Atributes
@@ -49,5 +49,10 @@ class Produto extends Model
     public function scopeRecomendados($query)
     {
         return $query->where('recommend','=','1');
+    }
+
+    public function scopeOfCategoria($query, $type)
+    {
+        return $query->where('categoria_id', '=', $type);
     }
 }

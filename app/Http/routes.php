@@ -3,15 +3,18 @@
 
 Route::pattern('id', '[0-9]+');
 Route::pattern('categoriaId', '[0-9]+');
+Route::pattern('tagId', '[0-9]+');
 
-Route::get('/', 'StoreController@index');
-
-Route::get('/produtos/{categoriaId}/categoria', ['as'=>'store.produtos.categorias', 'uses'=>'StoreController@produtosPorCategoria']);
+Route::get('/', ['as'=>'store.index','uses'=>'StoreController@index']);
+Route::get('/category/{categoriaId}', ['as'=>'store.produtos.categorias', 'uses'=>'StoreController@produtosPorCategoria']);
+Route::get('/product/{id}', ['as'=>'store.produto', 'uses'=>'StoreController@produto']);
+Route::get('/tag/{tagId}', ['as'=>'store.produtos.tag', 'uses'=>'StoreController@produtosPorTags']);
 
 Route::group(['prefix'=>'admin'], function(){
 	Route::get('', function(){		
 		return view('app');		
 	});
+
 	Route::group(['prefix'=>'categories'], function(){
 		Route::get('/', ['as'=>'categorias', 'uses'=>'CategoriasController@index']);
 		Route::get('/create',['as'=>'categorias.cadastrar', 'uses'=> 'CategoriasController@cadastrar']);
