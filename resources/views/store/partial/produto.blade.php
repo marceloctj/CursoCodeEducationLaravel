@@ -23,7 +23,7 @@
                     <a href="{{ route('store.produto',['id'=>$produto->id])}}" class="btn btn-default add-to-cart">
                         <i class="fa fa-crosshairs"></i>Mais detalhes
                     </a>
-                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
+                    <a href="{{ route('cart.add',['id'=> $produto->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
                 </div>
             </div>
         </div>
