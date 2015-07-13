@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
-use CodeCommerce\Model\Categoria;
-use CodeCommerce\Model\Tag;
-use CodeCommerce\Model\Produto;
+use CodeCommerce\Categoria;
+use CodeCommerce\Tag;
+use CodeCommerce\Produto;
 
 class StoreController extends Controller
 {

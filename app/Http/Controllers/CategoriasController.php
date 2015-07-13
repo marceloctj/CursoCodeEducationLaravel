@@ -3,7 +3,7 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Http\Controllers\Controller;
-use CodeCommerce\Model\Categoria;
+use CodeCommerce\Categoria;
 use CodeCommerce\Http\Requests;
 
 use Illuminate\Http\Request;

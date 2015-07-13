@@ -2,7 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
-use CodeCommerce\Model\Categoria;
+use CodeCommerce\Categoria;
 
 class WelcomeController extends Controller {
 

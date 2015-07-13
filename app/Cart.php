@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeCommerce\Model;
+namespace CodeCommerce;
 
 class Cart
 {

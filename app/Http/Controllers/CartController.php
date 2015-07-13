@@ -4,8 +4,8 @@ namespace CodeCommerce\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 
-use CodeCommerce\Model\Cart;
-use CodeCommerce\Model\Produto;
+use CodeCommerce\Cart;
+use CodeCommerce\Produto;
 use CodeCommerce\Http\Requests;
 
 class CartController extends Controller
