@@ -9,23 +9,33 @@ use Illuminate\Support\Facades\Auth;
 
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
+use CodeCommerce\Categoria;
+use CodeCommerce\Events\CheckoutEvent;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
 class CheckoutController extends Controller
 {
-    public function place(Order $orderModel, OrderItem $orderItem)
-    {   
-    	if(!Session::has('cart') || empty(Session::get('cart')->all())){
-            return redirect()->route('cart');
-        }
 
+    private $order;
+    private $orderItem;
+
+    public function __construct(Order $order, OrderItem $orderItem){
+        $this->order     = $order;
+        $this->orderItem = $orderItem;
+    }
+
+    public function place()
+    {       
+        
         $cart = Session::get('cart');
+
+        $categoriasSideBar = Categoria::all();
 
         if($cart->getTotal() > 0){
 
-            $order = $orderModel->create(['user_id'=>Auth::user()->id, 'total'=>$cart->getTotal()]);
+            $order = $this->order->create(['user_id'=>Auth::user()->id, 'total'=>$cart->getTotal()]);
 
             foreach ($cart->all() as $key => $item) {
 
@@ -33,7 +43,16 @@ class CheckoutController extends Controller
 
             }
 
-            return view('store.checkout');
+            // $cart->clear();
+
+            event(new CheckoutEvent(Auth::user(), $order));
+
+            return view('store.checkout', compact('order','categoriasSideBar'));
         }
+
+        
+        $cart = 'empty';
+
+        return view('store.checkout', compact('cart','categoriasSideBar'));
     }
 }

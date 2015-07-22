@@ -17,13 +17,19 @@ Route::group(['prefix'=>'cart'], function(){
 	Route::get('/removeUnid/{id}', ['as'=>'cart.removeUnid', 'uses'=>'CartController@removeUnid']);
 });
 
-Route::get('checkout/placeOrder', ['as'=>'checkout.place', 'uses'=>'CheckoutController@place', 'middleware'=>'auth']);
+Route::group(['middleware'=>'auth'],function(){
+	Route::get('checkout/placeOrder', ['as'=>'checkout.place', 'uses'=>'CheckoutController@place']);
+	Route::get('account/orders', ['as'=>'account.orders', 'uses'=>'AccountController@orders']);
+});
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
 
 	Route::get('', function(){
 		return view('app');		
 	});
+
+	Route::get('orders/', ['as'=>'orders', 'uses'=>'OrderController@index']);	
+	Route::post('order/status/ajax',['as'=>'order.status.update.ajax', 'uses'=>'OrderController@updateStatus']);
 
 	Route::group(['prefix'=>'categories'], function(){
 		Route::get('/', ['as'=>'categorias', 'uses'=>'CategoriasController@index']);
@@ -53,7 +59,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
 		});
 	});
 });
-
 
 Route::controllers([
 	'auth' 	   => 'Auth\AuthController',

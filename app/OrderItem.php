@@ -17,4 +17,9 @@ class OrderItem extends Model
     {
     	return $this->belongsTo('CodeCommerce\Order');
     }
+
+    public function produto()
+    {
+        return $this->belongsTo('CodeCommerce\Produto');
+    }
 }

@@ -36,6 +36,7 @@
 					<li><a href="{{ url('/') }}">Home</a></li>
 					<li><a href="{{ route('categorias') }}">Categorias</a></li>
 					<li><a href="{{ route('produtos') }}">Produtos</a></li>
+					<li><a href="{{ route('orders') }}">Ordens de Serviço</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -71,5 +72,7 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	@yield('extrafooter')
 </body>
 </html>
