@@ -33,9 +33,11 @@ class AlterTableUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->removeColumn('cep');
             $table->removeColumn('logradouro');
+            $table->removeColumn('numero');
+            $table->removeColumn('complement');
             $table->removeColumn('bairro');
             $table->removeColumn('cidade');
-            $table->removeColumn('uf');            
+            $table->removeColumn('uf');
         });
     }
 }
