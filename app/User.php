@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     	'cep',
 		'logradouro',
 		'numero',
-		'complement',
+		'complemento',
 		'bairro',
 		'cidade',
 		'uf',
