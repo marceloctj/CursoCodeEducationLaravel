@@ -12,15 +12,9 @@
 			</ul>
 		@endif
 		
-		{!! Form::open(['route'=>['categorias.atualizar',$categoria->id], 'method'=>'put'])  !!}
-		<div class='form-group'>
-			{!! Form::label('name', 'Nome:') !!}
-			{!! Form::text('name', $categoria->name, ['class'=>'form-control']) !!}
-		</div>
-		<div class='form-group'>
-			{!! Form::label('description', 'Descrição:') !!}
-			{!! Form::textarea('description', $categoria->description, ['class'=>'form-control']) !!}
-		</div>
+		{!! Form::model($categoria, ['route'=>['categorias.atualizar',$categoria->id], 'method'=>'put'])  !!}
+
+		@include('categorias._form')
 
 		<div class='form-group'>
 			<button type='submit' class='btn btn-primary'>

@@ -15,14 +15,8 @@
 		@endif
 		
 		{!! Form::open(['route'=>'categorias.adicionar'])  !!}
-		<div class='form-group'>
-			{!! Form::label('name', 'Nome:') !!}
-			{!! Form::text('name', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class='form-group'>
-			{!! Form::label('description', 'Descrição:') !!}
-			{!! Form::textarea('description', null, ['class'=>'form-control']) !!}
-		</div>
+		
+		@include('categorias._form')
 
 		<div class='form-group'>
 			<button type='submit' class='btn btn-primary'>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table    = 'order';
-    protected $fillable = ['user_id','total','status'];
+    protected $fillable = ['user_id','total','status','pag_seguro_referencia', 'pag_seguro_transacao'];
 
     public function itens()
     {
@@ -47,5 +47,10 @@ class Order extends Model
             'Produto(s) em Transporte',
             'Produto(s) entregues'
         ];
+    }
+
+    public function getPagSeguroReferencia()
+    {
+        return sha1($this->user_id . '#' . $this->id);
     }
 }

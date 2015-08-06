@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->decimal('total', 8, 2);
             $table->smallInteger('status')->default(0);
+            $table->string('pag_seguro_referencia', 255);
+            $table->string('pag_seguro_transacao', 255)->nullable();
             $table->timestamps();
         });
     }

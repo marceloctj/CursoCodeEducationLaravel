@@ -24,8 +24,9 @@ class StoreController extends Controller
         $this->tagModel       = $tag;
 	}
 
-    public function index()
+    public function index(Request $request)
     {
+        file_put_contents('topqwpodkq.txt', var_export($request->all(), true));
     	$categoriasSideBar 	  = $this->categoriaModel->all();
 
     	$produtosEmDestaque   = $this->produtoModel->emDestaque()->get();
