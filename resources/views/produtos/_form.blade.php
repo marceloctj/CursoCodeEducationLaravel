@@ -21,5 +21,5 @@
 </div>
 <div class='form-group'>
 	{!! Form::label('tags', 'Tags:') !!}
-	{!! Form::textarea('tags', null, ['class'=>'form-control']) !!}
+	{!! Form::textarea('tags', isset($tags) ? $tags : null, ['class'=>'form-control']) !!}
 </div>

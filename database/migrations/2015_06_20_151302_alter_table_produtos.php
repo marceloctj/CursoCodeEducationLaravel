@@ -9,8 +9,8 @@ class AlterTableProdutos extends Migration
     public function up()
     {
         Schema::table('produto', function($table){
-            $table->boolean('featured');
-            $table->boolean('recommend');
+            $table->boolean('featured')->default(0);
+            $table->boolean('recommend')->default(0);
         });
     }
 

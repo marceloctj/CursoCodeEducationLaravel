@@ -64,7 +64,7 @@ class ProdutosController extends Controller
         }        
 
         $categorias = $categoria->lists('name','id');
-        $tags       = $produto->tagsList;        
+        $tags       = $produto->tagsList;
 
         return view('produtos.editar', compact('produto','categorias','tags'));
     }
