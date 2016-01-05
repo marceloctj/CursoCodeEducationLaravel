@@ -12,7 +12,7 @@ class ProdutoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('produto')->truncate();
+        //DB::table('produto')->truncate();
 
         factory('CodeCommerce\Produto', 100)->create();
     }

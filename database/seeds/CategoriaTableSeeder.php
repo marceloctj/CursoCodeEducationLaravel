@@ -12,7 +12,7 @@ class CategoriaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categoria')->truncate();
+        //DB::table('categoria')->truncate();
 
         factory('CodeCommerce\Categoria', 15)->create();
     }
