@@ -18,6 +18,13 @@ $factory->define(CodeCommerce\User::class, function ($faker) {
         'password'		 => str_random(10),
         'remember_token' => str_random(10),
         'is_admin'       => 0,
+        'cep'            => '25050-240',
+        'logradouro'     => 'Rua Professor Jose Alvarenga',
+        'numero'         => 'S/N',
+        'complemento'    => 'Casa',
+        'bairro'         => 'Ipatinga',
+        'cidade'         => 'Rio de Janeiro',
+        'uf'             => 'RJ'
     ];
 });
 
