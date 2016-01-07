@@ -80,9 +80,10 @@ class CheckoutController extends Controller
         $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
 
         if($order){
-            return ['OK'];
+            $order->update([
+                'status'                => $detalhes->getStatus(),
+                'pag_seguro_transacao'  => $detalhes->getCode()
+            ]);
         }
-
-        return ['Nao OK'];
     }
 }
