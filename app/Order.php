@@ -28,13 +28,15 @@ class Order extends Model
             'Produto(s) sendo Separado(s) no Estoque',  
             'Produto(s) Enviado(s) para Transportadora',
             'Produto(s) em Transporte',
-            'Produto(s) entregues'
+            'Produto(s) entregues',
+            '',
+            'Pagamento Cancelado'
         ];
 
         $replace = ($this->itens()->count() == 1) ? '' : 's';
 
         return str_replace('(s)', $replace, $options[$this->status]);
-        
+
     }
 
     public function getStatusText($json = true)
