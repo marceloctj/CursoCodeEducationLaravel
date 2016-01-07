@@ -13,7 +13,7 @@ use CodeCommerce\Categoria;
 use CodeCommerce\Events\CheckoutEvent;
 
 use PHPSC\PagSeguro\Items\Item;
-use PHPSC\PagSeguro\Purchases\Subscriptions\Locator;
+use PHPSC\PagSeguro\Purchases\Transactions\Locator;
 use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
 
 use CodeCommerce\Http\Requests;
@@ -73,8 +73,8 @@ class CheckoutController extends Controller
 
     public function test(Locator $service)
     {
-        $transaction = $service->getByCode('1BB61193414168C664F1EF891DF77310');
+        $transaction = $service->getByCode('F0F556F24D044456AB19F0CF7C0F43CD');
 
-        var_dump($transaction);
+        dd($transaction);
     }
 }

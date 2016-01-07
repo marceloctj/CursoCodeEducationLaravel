@@ -10,6 +10,8 @@
 			<th>Valor</th>
 			<th>Status</th>
 			<th>Criado Em</th>
+			<th>PagSeguro Ref.</th>
+			<th>PagSeguro Tran.</th>
 		</tr>		
 		@forelse($orders as $order)
 			<tr>
@@ -21,7 +23,7 @@
 							<li>{{ $item->qtd }}x {{ $item->produto->name }}</li>
 						@endforeach
 
-					</ul>
+				</ul>
 				</td>
 				<td>R$ {{ $order->total }}</td>
 				<td>
@@ -29,11 +31,13 @@
 					<span class='status-select' style='display:none'>
 						{!! Form::select("status", $textStatus, $order->status) !!}
 						{!! Form::button('Alterar', ['class'=>'grava-status', 'data-order'=>$order->id]) !!}
-						{!! Form::button('Cancelar', ['class'=>'status-cancel', 'data-order'=>$order->id]) !!}						
+						{!! Form::button('Cancelar', ['class'=>'status-cancel', 'data-order'=>$order->id]) !!}
 						{!! Form::token() !!}
 					</span>
 				</td>
 				<td>{{ date('d/m/Y H:i:s', strtotime($order->created_at)) }}</td>
+				<td>{{ $order->pag_seguro_referencia }}</td>
+				<td>{{ $order->pag_seguro_transacao }}</td>
 			</tr>
 		@empty		
 			<tr>
