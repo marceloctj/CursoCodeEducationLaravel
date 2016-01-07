@@ -73,8 +73,16 @@ class CheckoutController extends Controller
 
     public function test(Locator $service)
     {
-        $transaction = $service->getByCode('F0F556F24D044456AB19F0CF7C0F43CD');
+        $transaction = $service->getByNotification('4B5DD4E186268626FAD1146A6FBA79116A29');
 
-        dd($transaction);
+        $detalhes = $transaction->getDetails();
+
+        $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+
+        if($order){
+            return ['OK'];
+        }
+
+        return ['Nao OK'];
     }
 }
