@@ -60,7 +60,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
 	});
 });
 
-Route::get('test', 'CheckoutController@test');
+Route::post('setStatusProducts', 'CheckoutController@test');
 
 Route::controllers([
 	'auth' 	   => 'Auth\AuthController',

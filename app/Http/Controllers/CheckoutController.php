@@ -71,19 +71,23 @@ class CheckoutController extends Controller
         return view('store.checkout', compact('cart','categoriasSideBar'));
     }    
 
-    public function test(Locator $service)
+    public function setStatusProducts(Locator $service, $notification)
     {
-        $transaction = $service->getByNotification('4B5DD4E186268626FAD1146A6FBA79116A29');
+        try {
+            $transaction = $service->getByNotification($notification);
 
-        $detalhes = $transaction->getDetails();
+            $detalhes = $transaction->getDetails();
 
-        $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+            $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
 
-        if($order){
-            $order->update([
-                'status'                => $detalhes->getStatus(),
-                'pag_seguro_transacao'  => $detalhes->getCode()
-            ]);
+            if($order){
+                $order->update([
+                    'status'                => $detalhes->getStatus(),
+                    'pag_seguro_transacao'  => $detalhes->getCode()
+                ]);
+            }
+        }catch(\Exception $e){
+            return $e->getMessage();
         }
     }
 }
