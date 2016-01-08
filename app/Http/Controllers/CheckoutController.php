@@ -71,20 +71,27 @@ class CheckoutController extends Controller
         return view('store.checkout', compact('cart','categoriasSideBar'));
     }    
 
-    public function setStatusProducts(Locator $service, $notification)
+    public function setStatusProducts(Locator $service)
     {
         try {
-            $transaction = $service->getByNotification($notification);
+            if($this->request->hasPost('notificationType')){
 
-            $detalhes = $transaction->getDetails();
+                if($this->request->getPost('notificationType') == 'transaction'){
+                    $notification = $this->request->getPost('notificationCode');
 
-            $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+                    $transaction = $service->getByNotification($notification);
 
-            if($order){
-                $order->update([
-                    'status'                => $detalhes->getStatus(),
-                    'pag_seguro_transacao'  => $detalhes->getCode()
-                ]);
+                    $detalhes = $transaction->getDetails();
+
+                    $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+
+                    if($order){
+                        $order->update([
+                            'status'                => $detalhes->getStatus(),
+                            'pag_seguro_transacao'  => $detalhes->getCode()
+                        ]);
+                    }
+                }
             }
         }catch(\Exception $e){
             return $e->getMessage();
