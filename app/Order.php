@@ -23,14 +23,15 @@ class Order extends Model
     {
 
         $options = [
-            'Aguardando Pagamento',
-            'Pagamento Confirmado',
-            'Produto(s) sendo Separado(s) no Estoque',  
-            'Produto(s) Enviado(s) para Transportadora',
-            'Produto(s) em Transporte',
-            'Produto(s) entregues',
-            '',
-            'Pagamento Cancelado'
+            0  => 'Aguardando Pagamento',
+            5  => 'Pagamento Confirmado',
+            4  => 'Pagamento Cancelado',
+            10 => 'Pagamento Disponível',
+            7  => 'Pagamento em Análise',
+            15 => 'Produto(s) sendo Separado(s) no Estoque',
+            16 => 'Produto(s) Enviado(s) para Transportadora',
+            17 => 'Produto(s) em Transporte',
+            18 => 'Produto(s) entregues',
         ];
 
         $replace = ($this->itens()->count() == 1) ? '' : 's';
@@ -42,12 +43,15 @@ class Order extends Model
     public function getStatusText($json = true)
     {
        return [
-            'Aguardando Pagamento',
-            'Pagamento Confirmado',
-            'Produto(s) sendo Separado(s) no Estoque',  
-            'Produto(s) Enviado(s) para Transportadora',
-            'Produto(s) em Transporte',
-            'Produto(s) entregues'
+            0  => 'Aguardando Pagamento',
+            5  => 'Pagamento Confirmado',
+            4  => 'Pagamento Cancelado',
+            10 => 'Pagamento Disponível',
+            7  => 'Pagamento em Análise',
+            15 => 'Produto(s) sendo Separado(s) no Estoque',
+            16 => 'Produto(s) Enviado(s) para Transportadora',
+            17 => 'Produto(s) em Transporte',
+            18 => 'Produto(s) entregues',
         ];
     }
 
