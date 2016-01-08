@@ -24,10 +24,12 @@ class CheckoutController extends Controller
 
     private $order;
     private $orderItem;
+    private $request;
 
-    public function __construct(Order $order, OrderItem $orderItem){
+    public function __construct(Order $order, OrderItem $orderItem, Request $request){
         $this->order     = $order;
         $this->orderItem = $orderItem;
+        $this->request   = $request;
     }
 
     public function place(CheckoutService $checkoutService)
@@ -74,10 +76,10 @@ class CheckoutController extends Controller
     public function setStatusProducts(Locator $service)
     {
         try {
-            if($this->request->hasPost('notificationType')){
+            if($this->request->has('notificationType')){
 
-                if($this->request->getPost('notificationType') == 'transaction'){
-                    $notification = $this->request->getPost('notificationCode');
+                if($this->request->get('notificationType') == 'transaction'){
+                    $notification = $this->request->get('notificationCode');
 
                     $transaction = $service->getByNotification($notification);
 
