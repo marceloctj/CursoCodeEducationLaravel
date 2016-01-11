@@ -23,6 +23,7 @@ class Order extends Model
     {
 
         $options = [
+            6  => '',
             0  => 'Aguardando Pagamento',
             5  => 'Pagamento Confirmado',
             4  => 'Pagamento Cancelado',

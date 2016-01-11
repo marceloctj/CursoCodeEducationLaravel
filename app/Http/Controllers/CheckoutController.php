@@ -79,22 +79,24 @@ class CheckoutController extends Controller
             if($this->request->has('notificationType')){
 
                 if($this->request->get('notificationType') == 'transaction'){
-                    $notification = $this->request->get('notificationCode');
+                    $notification = '8F8BCEC1782C782CA5F444AF7F9C2B0A8BEF';//$this->request->get('notificationCode');
 
                     $transaction = $service->getByNotification($notification);
 
-                    $detalhes = $transaction->getDetails();
+                    dd($transaction);
 
-                    $order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+                    //$detalhes = $transaction->getDetails();
 
-                    if($order){
+                    //$order = $this->order->where("pag_seguro_referencia", $transaction->getDetails()->getReference())->limit(1)->get()->first();
+
+                    /*if($order){
                         $order->update([
                             'status'                => $detalhes->getStatus(),
                             'pag_seguro_transacao'  => $detalhes->getCode()
                         ]);
-                    }
+                    }*/
                 }
-            }
+             }
         }catch(\Exception $e){
             return $e->getMessage();
         }
